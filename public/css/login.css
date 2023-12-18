@@ -1,0 +1,44 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 0;
+}
+
+.login-image {
+    background-image: url('../img/Logo_MacKing.png');
+    background-size: cover;
+    height: 100vh;
+    flex: 1;
+}
+
+.login-form-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    flex: 0.5;
+}
+
+.login-form {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.login-container,
+.login-form-container {
+    background-color: blue;
+}
+
+.container2 {
+    background-color: white;
+    padding: 50px;
+}
+
+.container2 form {
+    margin-top: 40px;
+}
+
+.container2 button {
+    margin-top: 20px;
+}
