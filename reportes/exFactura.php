@@ -16,13 +16,13 @@ if ($_SESSION['ventas']==1)
 require('Factura.php');
 
 //Establecemos los datos de la empresa
-$logo = "logo.jpg";
-$ext_logo = "jpg";
-$empresa = "Embasadora y Distribuidora Sur Oriente";
+$logo = "logo.png";
+$ext_logo = "png";
+$empresa = "NEW HORIZON";
 $documento = "269837446578";
 $direccion = "Chiquimulilla, Santa Rosa";
 $telefono = "55774465";
-$email = "macking@gmail.com";
+$email = "newhorizon@gmail.com";
 
 //Obtenemos los datos de la cabecera de la venta actual
 require_once "../modelos/Venta.php";

@@ -13,6 +13,7 @@ Class Ingreso
 	//Implementamos un método para insertar registros
 	public function insertar($idproveedor,$idusuario,$tipo_comprobante,$serie_comprobante,$num_comprobante,$fecha_hora,$impuesto,$total_compra,$idarticulo,$cantidad,$precio_compra,$precio_venta)
 	{
+		beginTransaction();
 		$sql="INSERT INTO ingreso (idproveedor,idusuario,tipo_comprobante,serie_comprobante,num_comprobante,fecha_hora,impuesto,total_compra,estado)
 		VALUES ('$idproveedor','$idusuario','$tipo_comprobante','$serie_comprobante','$num_comprobante','$fecha_hora','$impuesto','$total_compra','Aceptado')";
 		//return ejecutarConsulta($sql);
@@ -27,6 +28,7 @@ Class Ingreso
 			ejecutarConsulta($sql_detalle) or $sw = false;
 			$num_elementos=$num_elementos + 1;
 		}
+		commitTransaction();
 
 		return $sw;
 	}
@@ -35,8 +37,22 @@ Class Ingreso
 	//Implementamos un método para anular categorías
 	public function anular($idingreso)
 	{
+		beginTransaction();
 		$sql="UPDATE ingreso SET estado='Anulado' WHERE idingreso='$idingreso'";
-		return ejecutarConsulta($sql);
+
+		$sql_detalle = "SELECT * from detalle_ingreso WHERE idingreso = '$idingreso'";
+		$list_detalle = ejecutarConsulta($sql_detalle);
+		
+		while ($value=$list_detalle->fetch_object()) {
+			$sql_articulo="SELECT * FROM articulo WHERE idarticulo='$value->idarticulo'";
+			$mostrar_articulo = ejecutarConsultaSimpleFila($sql_articulo);
+			$stock = $mostrar_articulo['stock']-$value->cantidad;
+			$update_stock = "UPDATE articulo SET stock = '$stock' WHERE idarticulo = '$value->idarticulo'";
+			ejecutarConsulta($update_stock);
+		}
+		$rspta = ejecutarConsulta($sql);
+		commitTransaction();
+		return $rspta;
 	}
 
 

@@ -10,7 +10,7 @@ if (!isset($_SESSION["nombre"]))
 else
 {
 require 'header.php';
-if ($_SESSION['prod']==1)
+if ($_SESSION['compras']==1)
 {
 ?>
 <!--Contenido-->

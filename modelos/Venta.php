@@ -13,6 +13,7 @@ Class Venta
 	//Implementamos un método para insertar registros
 	public function insertar($idcliente,$idusuario,$tipo_comprobante,$serie_comprobante,$num_comprobante,$fecha_hora,$impuesto,$total_venta,$idarticulo,$cantidad,$precio_venta,$descuento)
 	{
+		beginTransaction();
 		$sql="INSERT INTO venta (idcliente,idusuario,tipo_comprobante,serie_comprobante,num_comprobante,fecha_hora,impuesto,total_venta,estado)
 		VALUES ('$idcliente','$idusuario','$tipo_comprobante','$serie_comprobante','$num_comprobante','$fecha_hora','$impuesto','$total_venta','Aceptado')";
 		//return ejecutarConsulta($sql);
@@ -23,19 +24,11 @@ Class Venta
 
 		while ($num_elementos < count($idarticulo))
 		{
-			/*
-				CONSULTAR ARTICULO POR EL ID DE ARTICULO
-				$articulo = queryarticulo;
-				//si validar si cantidad > $articulo->stock
-					//retornar exception
-
-				
-			*/
 			$sql_detalle = "INSERT INTO detalle_venta(idventa, idarticulo,cantidad,precio_venta,descuento) VALUES ('$idventanew', '$idarticulo[$num_elementos]','$cantidad[$num_elementos]','$precio_venta[$num_elementos]','$descuento[$num_elementos]')";
 			ejecutarConsulta($sql_detalle) or $sw = false;
 			$num_elementos=$num_elementos + 1;
 		}
-
+		commitTransaction();
 		return $sw;
 	}
 
@@ -43,8 +36,22 @@ Class Venta
 	//Implementamos un método para anular la venta
 	public function anular($idventa)
 	{
+		beginTransaction();
 		$sql="UPDATE venta SET estado='Anulado' WHERE idventa='$idventa'";
-		return ejecutarConsulta($sql);
+
+		$sql_detalle = "SELECT * from detalle_venta WHERE idventa = '$idventa'";
+		$list_detalle = ejecutarConsulta($sql_detalle);
+		while ($value=$list_detalle->fetch_object()) {
+			$sql_articulo="SELECT * FROM articulo WHERE idarticulo='$value->idarticulo'";
+			$mostrar_articulo = ejecutarConsultaSimpleFila($sql_articulo);
+			$stock = $mostrar_articulo['stock']+$value->cantidad;
+			$update_stock = "UPDATE articulo SET stock = '$stock' WHERE idarticulo = '$value->idarticulo'";
+			ejecutarConsulta($update_stock);
+		}
+		$rspta = ejecutarConsulta($sql);
+		commitTransaction();
+		return $rspta;
+		
 	}
 
 

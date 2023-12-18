@@ -52,7 +52,7 @@ if ($_SESSION['consultav']==1)
                             <th>Comprobante</th>
                             <th>Número</th>
                             <th>Total Venta</th>
-                            <th>Impuesto</th>
+                            <th>Impuesto (%)</th>
                             <th>Estado</th>
                           </thead>
                           <tbody>                            

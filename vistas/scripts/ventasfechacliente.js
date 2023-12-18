@@ -5,6 +5,7 @@ function init(){
 	listar();
 	//Cargamos los items al select cliente
 	$.post("../ajax/venta.php?op=selectCliente", function(r){
+				r = "<option value=0>TODOS</option>"+r
 	            $("#idcliente").html(r);
 	            $('#idcliente').selectpicker('refresh');
 	});

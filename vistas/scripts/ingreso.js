@@ -24,6 +24,7 @@ function limpiar()
 {
 	$("#idproveedor").val("");
 	$("#proveedor").val("");
+	$("#idproveedor").selectpicker('refresh');
 	$("#serie_comprobante").val("");
 	$("#num_comprobante").val("");
 	$("#impuesto").val("0");
@@ -207,6 +208,7 @@ function anular(idingreso)
 		if(result)
         {
         	$.post("../ajax/ingreso.php?op=anular", {idingreso : idingreso}, function(e){
+        		listar();
         		bootbox.alert(e);
 	            tabla.ajax.reload();
         	});	
@@ -216,7 +218,7 @@ function anular(idingreso)
 
 //Declaración de variables necesarias para trabajar con las compras y
 //sus detalles
-var impuesto=18;
+var impuesto=12;
 var cont=0;
 var detalles=0;
 //$("#guardar").hide();

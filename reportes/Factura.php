@@ -483,13 +483,13 @@ function addCadreEurosFrancs($impuesto)
 	$this->SetXY( $r1+22, $y1 );
 	$this->Cell(15,4, "TOTALES", 0, 0, "C");
 	$this->SetFont( "Arial", "", 8);
-	//$this->SetXY( $r1+42, $y1 );
+	$this->SetXY( $r1+42, $y1 );
 	//$this->Cell(15,4, "FRANCS", 0, 0, "C");
 	$this->SetFont( "Arial", "B", 6);
 	$this->SetXY( $r1, $y1+5 );
-	$this->Cell(20,4, "SUBTOTAL", 0, 0, "C");
+	//$this->Cell(20,4, "SUBTOTAL", 0, 0, "C");
 	$this->SetXY( $r1, $y1+10 );
-	$this->Cell(20,4, $impuesto, 0, 0, "C");
+	//$this->Cell(20,4, $impuesto, 0, 0, "C");
 	$this->SetXY( $r1, $y1+15 );
 	$this->Cell(20,4, "TOTAL A PAGAR", 0, 0, "C");
 }
@@ -522,9 +522,9 @@ function addTVAs( $igv, $total,$moneda )
 	$y1  = $this->h - 40;
 	$this->SetFont( "Arial", "", 8);
 	$this->SetXY( $re, $y1+5 );
-	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $total-($total*$igv/($igv+100))), '', '', 'R');
+	//$this->Cell( 17,4, $moneda.sprintf("%0.2F", $total-($total*$igv/($igv+100))), '', '', 'R');
 	$this->SetXY( $re, $y1+10 );
-	$this->Cell( 17,4, $moneda.sprintf("%0.2F", ($total*$igv/($igv+100))), '', '', 'R');
+	//$this->Cell( 17,4, $moneda.sprintf("%0.2F", ($total*$igv/($igv+100))), '', '', 'R');
 	$this->SetXY( $re, $y1+14.8 );
 	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $total), '', '', 'R');
 	

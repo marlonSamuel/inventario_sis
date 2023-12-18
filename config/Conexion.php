@@ -14,6 +14,18 @@ if (mysqli_connect_errno())
 
 if (!function_exists('ejecutarConsulta'))
 {
+	function beginTransaction()
+	{
+		global $conexion;
+		$conexion->begin_transaction(MYSQLI_TRANS_START_READ_WRITE);
+	}
+
+	function commitTransaction()
+	{
+		global $conexion;
+		$conexion->commit();
+	}
+
 	function ejecutarConsulta($sql)
 	{
 		global $conexion;

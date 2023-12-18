@@ -202,7 +202,7 @@ function Parte($x)
 
       If($t == $this->Void) 
       { 
-        $i = $i + 1; 
+        $i = intval($i) + 1; 
         $x = $x / 1000; 
         If($x== 0) $i = 0; 
       } 

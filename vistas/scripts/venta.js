@@ -24,6 +24,7 @@ function limpiar()
 {
 	$("#idcliente").val("");
 	$("#cliente").val("");
+	$("#idcliente").selectpicker('refresh');
 	$("#serie_comprobante").val("");
 	$("#num_comprobante").val("");
 	$("#impuesto").val("0");
@@ -51,6 +52,7 @@ function mostrarform(flag)
 	//limpiar();
 	if (flag)
 	{
+		limpiar();
 		$("#listadoregistros").hide();
 		$("#formularioregistros").show();
 		//$("#btnGuardar").prop("disabled",false);
@@ -241,7 +243,7 @@ function anular(idventa)
 
 //Declaración de variables necesarias para trabajar con las compras y
 //sus detalles
-var impuesto=18;
+var impuesto=12;
 var cont=0;
 var detalles=0;
 //$("#guardar").hide();

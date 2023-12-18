@@ -10,19 +10,19 @@ if (!isset($_SESSION["nombre"]))
 }
 else
 {
-if ($_SESSION['prod']==1)
+if ($_SESSION['compras']==1)
 {
 //Incluímos el archivo Ingreso.php
 require('Ingreso.php');
 
 //Establecemos los datos de la empresa
-$logo = "logo.jpg";
-$ext_logo = "jpg";
-$empresa = "Embasadora y Distribuidora Sur Oriente";
+$logo = "logo.png";
+$ext_logo = "png";
+$empresa = "NEW HORIZON";
 $documento = "269837446578";
 $direccion = "Chiquimulilla, Santa Rosa";
 $telefono = "55774465";
-$email = "macking@gmail.com";
+$email = "newhorizon@gmail.com";
 
 //Obtenemos los datos de la cabecera de la venta actual
 require_once "../modelos/Ingreso.php";

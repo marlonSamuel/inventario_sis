@@ -2,7 +2,7 @@
         <div class="pull-right hidden-xs">
           <b>Version</b> 3.0.0
         </div>
-        <strong> <a href="www.macking.com">ENVASADORA Y DISTRIBUIDORA DEL SUR ORIENTE "MACKING"</a></strong>
+        <strong> <a href="www.macking.com">NEW HORIZON, MUEBLES Y ELECTRODOMESTICOS  © <?php echo date("Y"), PHP_EOL;?></a></strong>
     </footer>    
     <!-- jQuery -->
     <script src="../public/js/jquery-3.1.1.min.js"></script>

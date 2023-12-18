@@ -86,7 +86,7 @@ if ($_SESSION['ventas']==1)
                           </div>
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Impuesto:</label>
-                            <input type="text" class="form-control" name="impuesto" id="impuesto" required="">
+                            <input type="text" class="form-control" name="impuesto" id="impuesto" required="" readonly>
                           </div>
                           <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <a data-toggle="modal" href="#myModal">           

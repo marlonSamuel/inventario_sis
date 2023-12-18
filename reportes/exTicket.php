@@ -31,11 +31,11 @@ $rspta = $venta->ventacabecera($_GET["id"]);
 $reg = $rspta->fetch_object();
 
 //Establecemos los datos de la empresa
-$empresa = "Embasadora y Distribuidora Sur Oriente";
+$empresa = "NEW HORIZON";
 $documento = "269837446578";
 $direccion = "Chiquimulilla, Santa Rosa";
 $telefono = "55774465";
-$email = "macking@gmail.com";
+$email = "newhorizon@gmail.com";
 
 ?>
 <div class="zona_impresion">

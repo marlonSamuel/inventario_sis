@@ -72,12 +72,12 @@ if ($_SESSION['escritorio']==1)
                                 <h4 style="font-size:17px;">
                                   <strong>Q. <?php echo $totalc; ?></strong>
                                 </h4>
-                                <p>Producción hoy</p>
+                                <p>Compras hoy</p>
                               </div>
                               <div class="icon">
                                 <i class="ion ion-bag"></i>
                               </div>
-                              <a href="ingreso.php" class="small-box-footer">Producción <i class="fa fa-arrow-circle-right"></i></a>
+                              <a href="ingreso.php" class="small-box-footer">Compras <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -99,7 +99,7 @@ if ($_SESSION['escritorio']==1)
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                           <div class="box box-primary">
                               <div class="box-header with-border">
-                                Producción de los últimos 10 días
+                                Compras de los últimos 10 días
                               </div>
                               <div class="box-body">
                                 <canvas id="compras" width="400" height="300"></canvas>
@@ -144,7 +144,7 @@ var compras = new Chart(ctx, {
     data: {
         labels: [<?php echo $fechasc; ?>],
         datasets: [{
-            label: 'Producción en Q. de los últimos 10 días',
+            label: 'Compras en Q. de los últimos 10 días',
             data: [<?php echo $totalesc; ?>],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',

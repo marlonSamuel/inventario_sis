@@ -10,7 +10,7 @@ if (!isset($_SESSION["nombre"]))
 else
 {
 //Validamos el acceso solo al usuario logueado y autorizado.
-if ($_SESSION['prod']==1)
+if ($_SESSION['compras']==1)
 {
 
 require_once "../modelos/Ingreso.php";

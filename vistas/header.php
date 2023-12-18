@@ -8,7 +8,7 @@ if (strlen(session_id()) < 1)
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>MACKING</title>
+  <title>NEW HORIZON</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.5 -->
@@ -19,7 +19,7 @@ if (strlen(session_id()) < 1)
   <link rel="stylesheet" href="../public/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../public/css/_all-skins.min.css">
-  <link rel="icon" href="../public/img/Logo_MacKing.png">
+  <link rel="icon" href="../public/img/logo.png">
 
   <!-- DATATABLES -->
   <link rel="stylesheet" type="text/css" href="../public/datatables/jquery.dataTables.min.css">
@@ -30,7 +30,7 @@ if (strlen(session_id()) < 1)
 
 </head>
 
-<body class="hold-transition skin-blue-light sidebar-mini">
+<body class="hold-transition skin-black sidebar-mini">
   <div class="wrapper">
 
     <header class="main-header">
@@ -38,9 +38,9 @@ if (strlen(session_id()) < 1)
       <!-- Logo -->
       <a href="escritorio.php" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>MAC</b>KING</span>
+        <span class="logo-mini"><b>HORIZON</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>MACKING</b></span>
+        <span class="logo-lg"><b>NEW HORIZON</b></span>
       </a>
 
       <!-- Header Navbar: style can be found in header.less -->
@@ -120,15 +120,15 @@ if (strlen(session_id()) < 1)
           ?>
 
           <?php
-                if ($_SESSION['prod'] == 1) {
+                if ($_SESSION['compras'] == 1) {
                   echo '<li id="mCompras" class="treeview">
               <a href="#">
                 <i class="fa fa-th"></i>
-                <span>Producción</span>
+                <span>Ingresos</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li id="lIngresos"><a href="ingreso.php"><i class="fa fa-circle-o"></i> Ingresos</a></li>
+                <li id="lIngresos"><a href="ingreso.php"><i class="fa fa-circle-o"></i> Compras</a></li>
                 <li id="lProveedores"><a href="proveedor.php"><i class="fa fa-circle-o"></i> Proveedores</a></li>
               </ul>
             </li>';
@@ -171,7 +171,7 @@ if (strlen(session_id()) < 1)
             if ($_SESSION['consultac'] == 1) {
               echo '<li id="mConsultaC" class="treeview">
               <a href="#">
-                <i class="fa fa-bar-chart"></i> <span>Consulta Producción</span>
+                <i class="fa fa-bar-chart"></i> <span>Consulta Ingresos</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -184,14 +184,15 @@ if (strlen(session_id()) < 1)
             <?php
               if ($_SESSION['consultav'] == 1) {
                 echo '<li id="mConsultaV" class="treeview">
-              <a href="#">
-                <i class="fa fa-bar-chart"></i> <span>Consulta Ventas</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li id="lConsulasV"><a href="ventasfechacliente.php"><i class="fa fa-circle-o"></i> Consulta Ventas</a></li>                
-              </ul>
-            </li>';
+                  <a href="#">
+                    <i class="fa fa-bar-chart"></i> <span>Consulta Ventas</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li id="lConsulasV"><a href="ventasfechacliente.php"><i class="fa fa-circle-o"></i> Consulta Ventas</a></li>    
+                    <li id="lConsulasf"><a href="ventasfechacliente.php"><i class="fa fa-circle-o"></i> Consulta Facturas DTE</a></li>            
+                  </ul>
+                </li>';
               }
               ?> 
 
