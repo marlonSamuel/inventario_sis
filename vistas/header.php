@@ -11,6 +11,8 @@ if (strlen(session_id()) < 1)
   <title>NEW HORIZON</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+  <link rel="stylesheet" href="../public/css/global.css">
   <!-- Bootstrap 3.3.5 -->
   <link rel="stylesheet" href="../public/css/bootstrap.min.css">
   <!-- Font Awesome -->
@@ -190,7 +192,7 @@ if (strlen(session_id()) < 1)
                   </a>
                   <ul class="treeview-menu">
                     <li id="lConsulasV"><a href="ventasfechacliente.php"><i class="fa fa-circle-o"></i> Consulta Ventas</a></li>    
-                    <li id="lConsulasf"><a href="ventasfechacliente.php"><i class="fa fa-circle-o"></i> Consulta Facturas DTE</a></li>            
+                    <li id="lConsulasf"><a href="facturasfecha.php"><i class="fa fa-circle-o"></i> Consulta Facturas DTE</a></li>            
                   </ul>
                 </li>';
               }

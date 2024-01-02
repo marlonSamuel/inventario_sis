@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule ^(.*).(pdf)$ access.php

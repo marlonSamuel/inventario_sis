@@ -19,5 +19,15 @@ define("DB_ENCODE","utf8");
 define("PRO_NOMBRE","Macking");
 
 //Ruta del servidor
-define("RUTA_SERVER", "/var/www/html/macking_sis");
+//define("RUTA_SERVER", "/var/www/html/macking_sis");
+
+//variables para facturación electronica
+
+define("AUTH_URL_DTE","https://felgttestaws.digifact.com.gt/gt.com.fel.api.v3/api/login/get_token");
+define("CERT_URL_DTE","https://felgttestaws.digifact.com.gt/gt.com.fel.api.v3/api/FELRequestV2?NIT=000044653948&TIPO=CERTIFICATE_DTE_XML_TOSIGN&FORMAT=XML,PDF,HTML&USERNAME=PRUEBAS56");
+define("CANCEL_URL_DTE","https://felgttestaws.digifact.com.gt/gt.com.fel.api.v3/api/FELRequestV2?NIT=000044653948&TIPO=ANULAR_FEL_TOSIGN&FORMAT=XML,PDF,HTML&USERNAME=PRUEBAS56");
+
+define("USERNAME_DTE","GT.000044653948.PRUEBAS56");
+define("PASS_DTE","w&LWv8h_");
+
 ?>

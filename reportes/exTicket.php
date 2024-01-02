@@ -85,7 +85,7 @@ $email = "newhorizon@gmail.com";
         echo "<tr>";
         echo "<td>".$regd->cantidad."</td>";
         echo "<td>".$regd->articulo;
-        echo "<td align='right'>S/ ".$regd->subtotal."</td>";
+        echo "<td align='right'>Q/ ".$regd->subtotal."</td>";
         echo "</tr>";
         $cantidad+=$regd->cantidad;
     }
@@ -94,7 +94,7 @@ $email = "newhorizon@gmail.com";
     <tr>
     <td>&nbsp;</td>
     <td align="right"><b>TOTAL:</b></td>
-    <td align="right"><b>S/  <?php echo $reg->total_venta;  ?></b></td>
+    <td align="right"><b>Q/  <?php echo $reg->total_venta;  ?></b></td>
     </tr>
     <tr>
       <td colspan="3">Nº de artículos: <?php echo $cantidad; ?></td>
@@ -106,7 +106,7 @@ $email = "newhorizon@gmail.com";
       <td colspan="3" align="center">¡Gracias por su compra!</td>
     </tr>
     <tr>
-      <td colspan="3" align="center">IncanatoIT</td>
+      <td colspan="3" align="center">New Horizón</td>
     </tr>
     <tr>
       <td colspan="3" align="center">Chiquimulilla - Santa Rosa</td>

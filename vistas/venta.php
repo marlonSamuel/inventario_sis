@@ -16,7 +16,7 @@ if ($_SESSION['ventas']==1)
 ?>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">        
+      <div class="content-wrapper" id="spinner">        
         <!-- Main content -->
         <section class="content">
             <div class="row">
@@ -36,6 +36,7 @@ if ($_SESSION['ventas']==1)
                             <th>Fecha</th>
                             <th>Cliente</th>
                             <th>Usuario</th>
+                            <th>Tipo venta</th>
                             <th>Documento</th>
                             <th>Número</th>
                             <th>Total Venta</th>
@@ -48,6 +49,7 @@ if ($_SESSION['ventas']==1)
                             <th>Fecha</th>
                             <th>Proveedor</th>
                             <th>Usuario</th>
+                            <th>Tipo venta</th>
                             <th>Documento</th>
                             <th>Número</th>
                             <th>Total Venta</th>
@@ -68,7 +70,7 @@ if ($_SESSION['ventas']==1)
                             <label>Fecha(*):</label>
                             <input type="date" class="form-control" name="fecha_hora" id="fecha_hora" required="">
                           </div>
-                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <label>Tipo Comprobante(*):</label>
                             <select name="tipo_comprobante" id="tipo_comprobante" class="form-control selectpicker" required="">
                                <option value="Boleta">Boleta</option>
@@ -76,13 +78,20 @@ if ($_SESSION['ventas']==1)
                                <option value="Ticket">Ticket</option>
                             </select>
                           </div>
+                          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <label>Tipo Venta(*):</label>
+                            <select name="tipo_venta" id="tipo_venta" class="form-control selectpicker" required="">
+                               <option value="CA">Al Contado</option>
+                               <option value="CR">Al Crédito</option>
+                            </select>
+                          </div>
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Serie:</label>
-                            <input type="text" class="form-control" name="serie_comprobante" id="serie_comprobante" maxlength="7" placeholder="Serie">
+                            <input type="text" class="form-control" name="serie_comprobante" id="serie_comprobante" maxlength="7" placeholder="Serie" readonly="">
                           </div>
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Número:</label>
-                            <input type="text" class="form-control" name="num_comprobante" id="num_comprobante" maxlength="10" placeholder="Número" required="">
+                            <input type="text" class="form-control" name="num_comprobante" id="num_comprobante" maxlength="10" placeholder="Número" readonly="">
                           </div>
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Impuesto:</label>

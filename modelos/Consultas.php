@@ -29,6 +29,11 @@ Class Consultas
 			
 	}
 
+	public function facturasDTE($fecha_inicio,$fecha_fin){
+		$sql="SELECT * from sat_facturas WHERE DATE(fecha_certificacion)>='$fecha_inicio' AND DATE(fecha_certificacion)<='$fecha_fin' order by idfactura desc";
+		return ejecutarConsulta($sql);
+	}
+
 	public function totalcomprahoy()
 	{
 		$sql="SELECT IFNULL(SUM(total_compra),0) as total_compra FROM ingreso WHERE DATE(fecha_hora)=SUBDATE(CURDATE(), 1)";
@@ -52,6 +57,15 @@ Class Consultas
 		$sql="SELECT DATE_FORMAT(fecha_hora,'%M') as fecha,SUM(total_venta) as total FROM venta GROUP by  DATE_FORMAT(fecha_hora,'%M') ORDER BY  DATE_FORMAT(fecha_hora,'%M') DESC limit 0,10";
 		return ejecutarConsulta($sql);
 	}
+
+	public function consulta_facturas()
+	{
+		$sql = "select (SELECT count(*) from sat_facturas where estado = 1 AND MONTH(fecha_certificacion) = MONTH(now()) AND YEAR(fecha_certificacion) = YEAR(now())) as total_anuladas, 
+			count(*) as cantidad_activas, sum(total) as total, sum(impuesto) as total_impuesto from sat_facturas where estado = 0
+			AND MONTH(fecha_certificacion) = MONTH(now()) AND YEAR(fecha_certificacion) = YEAR(now())";
+		return ejecutarConsulta($sql);
+	}
+
 }
 
 ?>

@@ -1,3 +1,4 @@
+
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
           <b>Version</b> 3.0.0
@@ -22,5 +23,7 @@
 
     <script src="../public/js/bootbox.min.js"></script> 
     <script src="../public/js/bootstrap-select.min.js"></script>
+    <script src="../public/js/spin.js"></script>
+    <script src="scripts/globalspin.js"></script> 
   </body>
 </html>

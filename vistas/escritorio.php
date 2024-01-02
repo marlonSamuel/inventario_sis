@@ -49,6 +49,19 @@ if ($_SESSION['escritorio']==1)
   $fechasv=substr($fechasv, 0, -1);
   $totalesv=substr($totalesv, 0, -1);
 
+  $cantidad_facts_activas = 0;
+  $total_facts = 0;
+  $total_impuestos = 0;
+  $cantidad_anuladas = 0;
+
+  $rsptafacts = $consulta->consulta_facturas();
+  $regfacts=$rsptafacts->fetch_object();
+
+  $cantidad_facts_activas=$regfacts->cantidad_activas;
+  $total_facts=$regfacts->total;
+  $total_impuestos=$regfacts->total_impuesto;
+  $cantidad_anuladas = $regfacts->total_anuladas;
+
 ?>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
@@ -65,6 +78,70 @@ if ($_SESSION['escritorio']==1)
                     </div>
                     <!-- /.box-header -->
                     <!-- centro -->
+                    <div class="panel-body">
+                      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                          <div class="small-box bg-aqua">
+                              <div class="inner">
+                                <h4 style="font-size:17px;">
+                                  <strong>Q. <?php echo $total_facts; ?></strong>
+                                </h4>
+                                <p>Total facturas DTE este mes ?></p>
+                              </div>
+                              <div class="icon">
+                                <i class="ion ion-bag"></i>
+                              </div>
+                              <a href="facturasfecha.php" class="small-box-footer">Facturas <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                          <div class="small-box bg-red">
+                              <div class="inner">
+                                <h4 style="font-size:17px;">
+                                  <strong>Q. <?php echo $total_impuestos; ?></strong>
+                                </h4>
+                                <p>Impuestos generados este mes</p>
+                              </div>
+                              <div class="icon">
+                                <i class="ion ion-bag"></i>
+                              </div>
+                              <a href="facturasfecha.php" class="small-box-footer">Facturas <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                          <div class="small-box bg-aqua">
+                              <div class="inner">
+                                <h4 style="font-size:17px;">
+                                  <strong><?php echo $cantidad_facts_activas; ?></strong>
+                                </h4>
+                                <p>Cantidad de facturas DTE este mes</p>
+                              </div>
+                              <div class="icon">
+                                <i class="ion ion-bag"></i>
+                              </div>
+                              <a href="facturasfecha.php" class="small-box-footer">Facturas <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                          <div class="small-box bg-red">
+                              <div class="inner">
+                                <h4 style="font-size:17px;">
+                                  <strong> <?php echo $cantidad_anuladas; ?></strong>
+                                </h4>
+                                <p>Facturas anuladas este mes</p>
+                              </div>
+                              <div class="icon">
+                                <i class="ion ion-bag"></i>
+                              </div>
+                              <a href="facturasfecha.php" class="small-box-footer">Facturas <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+
                     <div class="panel-body">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                           <div class="small-box bg-aqua">

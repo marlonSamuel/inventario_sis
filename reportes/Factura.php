@@ -127,7 +127,11 @@ function sizeOfText( $texte, $largeur )
 			$texte = substr( $texte, $pos+1 );
 		}
 		$length = floor( $this->GetStringWidth( $ligne ) );
-		$res = 1 + floor( $length / $largeur) ;
+		if($largeur == 0){
+			$res = 0;
+		}else{
+			$res = 1 + floor( $length / $largeur);
+		}
 		$nb_lines += $res;
 	}
 	return $nb_lines;
@@ -345,7 +349,7 @@ function addCols( $tab )
 	$r1  = 10;
 	$r2  = $this->w - ($r1 * 2) ;
 	$y1  = 79;
-	$y2  = $this->h - 50 - $y1;
+	$y2  = $this->h - 68 - $y1;
 	$this->SetXY( $r1, $y1 );
 	$this->Rect( $r1, $y1, $r2, $y2, "D");
 	$this->Line( $r1, $y1+6, $r1+$r2, $y1+6);
@@ -432,12 +436,28 @@ function addRemarque($remarque)
 	$this->Cell($length,4, "Remarque : " . $remarque);
 }
 
+function addConfirmation()
+{
+	$this->SetFont( "Arial", "B", 8);
+	$r1  = 40;
+	$r2  = $r1 + 120;
+	$y1  = $this->h - 40;
+	$y2  = $y1+25;
+	$this->RoundedRect($r1, $y1, ($r2 - $r1), ($y2-$y1), 2.5, 'D');
+
+	$this->SetXY( $r1+9, $y1+10);
+	$this->Cell(10,3, "___________________________________________________________________");
+	$this->SetFont( "Arial", "", 8);
+	$this->SetXY( $r1+40, $y1+12);
+	$this->MultiCell(100,7, 'RECIBÍ CONFORME');
+}
+
 function addCadreTVAs($monto)
 {
 	$this->SetFont( "Arial", "B", 8);
 	$r1  = 10;
 	$r2  = $r1 + 120;
-	$y1  = $this->h - 40;
+	$y1  = $this->h - 63;
 	$y2  = $y1+20;
 	$this->RoundedRect($r1, $y1, ($r2 - $r1), ($y2-$y1), 2.5, 'D');
 	//$this->Line( $r1, $y1+4, $r2, $y1+4);
@@ -473,7 +493,7 @@ function addCadreEurosFrancs($impuesto)
 {
 	$r1  = $this->w - 70;
 	$r2  = $r1 + 60;
-	$y1  = $this->h - 40;
+	$y1  = $this->h - 63;
 	$y2  = $y1+20;
 	$this->RoundedRect($r1, $y1, ($r2 - $r1), ($y2-$y1), 2.5, 'D');
 	$this->Line( $r1+20,  $y1, $r1+20, $y2); // avant EUROS
@@ -526,7 +546,7 @@ function addTVAs( $igv, $total,$moneda )
 	$this->SetXY( $re, $y1+10 );
 	//$this->Cell( 17,4, $moneda.sprintf("%0.2F", ($total*$igv/($igv+100))), '', '', 'R');
 	$this->SetXY( $re, $y1+14.8 );
-	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $total), '', '', 'R');
+	$this->Cell( 17,-40, $moneda.sprintf("%0.2F", $total), '', '', 'R');
 	
 }
 

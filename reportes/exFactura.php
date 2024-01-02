@@ -63,7 +63,7 @@ $cols=array( "CODIGO"=>"L",
              "DSCTO" =>"R",
              "SUBTOTAL"=>"C");
 $pdf->addLineFormat( $cols);
-$pdf->addLineFormat($cols);
+//$pdf->addLineFormat($cols);
 //Actualizamos el valor de la coordenada "y", que será la ubicación desde donde empezaremos a mostrar los datos
 $y= 89;
 
@@ -90,8 +90,10 @@ $pdf->addCadreTVAs("---".$con_letra);
 //Mostramos el impuesto
 $pdf->addTVAs( $regv->impuesto, $regv->total_venta,"Q ");
 $pdf->addCadreEurosFrancs("IVA"." $regv->impuesto %");
-$pdf->Output('Reporte de Venta','I');
 
+$pdf->addConfirmation("---".$con_letra);
+
+$pdf->Output('Reporte de Venta','I');
 
 }
 else
