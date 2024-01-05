@@ -198,6 +198,20 @@ if (strlen(session_id()) < 1)
               }
               ?> 
 
+              <?php
+              if ($_SESSION['consultav'] == 1 && $_SESSION['consultac'] == 1) {
+                echo '<li id="mConsultaV" class="treeview">
+                  <a href="#">
+                    <i class="fa fa-bar-chart"></i> <span>Otros reportes</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li id="lConsulasV"><a href="comprasvsventas.php"><i class="fa fa-circle-o"></i> Compras vs Ventas</a></li>           
+                  </ul>
+                </li>';
+              }
+              ?>
+
         </ul>
       </section>
       <!-- /.sidebar -->

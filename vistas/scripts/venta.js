@@ -288,7 +288,7 @@ function getLastId()
 
 //Declaración de variables necesarias para trabajar con las compras y
 //sus detalles
-var impuesto=12;
+var impuesto=5;
 var cont=0;
 var detalles=0;
 //$("#guardar").hide();

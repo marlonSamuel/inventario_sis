@@ -62,6 +62,18 @@ if ($_SESSION['escritorio']==1)
   $total_impuestos=$regfacts->total_impuesto;
   $cantidad_anuladas = $regfacts->total_anuladas;
 
+  //Datos para mostrar el gráfico de barras de las ventas
+  $compraventa = $consulta->getSumVentasCompras(date('Y'));
+  $fechascompraventa='';
+  $totalcompras='';
+  $totalventas = '';
+  while ($regcv= $compraventa->fetch_object()) {
+    var_dump($regcv);
+     $fechascompraventa=$fechascompraventa.'"'.$regcv->mes .'-'.$regcv->anio. '",';
+     $totalcompras=$totalcompras.$regcv->total_compra .','; 
+     $totalventas=$totalventas.$regcv->total_venta .','; 
+  }
+
 ?>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
@@ -72,7 +84,7 @@ if ($_SESSION['escritorio']==1)
               <div class="col-md-12">
                   <div class="box">
                     <div class="box-header with-border">
-                          <h1 class="box-title">Escritorio </h1>
+                          <h1 class="box-title">INICIO </h1>
                         <div class="box-tools pull-right">
                         </div>
                     </div>
@@ -85,7 +97,7 @@ if ($_SESSION['escritorio']==1)
                                 <h4 style="font-size:17px;">
                                   <strong>Q. <?php echo $total_facts; ?></strong>
                                 </h4>
-                                <p>Total facturas DTE este mes ?></p>
+                                <p>Total facturas DTE este mes</p>
                               </div>
                               <div class="icon">
                                 <i class="ion ion-bag"></i>
@@ -173,6 +185,18 @@ if ($_SESSION['escritorio']==1)
                         </div>
                     </div>
                     <div class="panel-body">
+
+                        <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="box box-primary">
+                              <div class="box-header with-border">
+                                Compras vs Ventas año actual
+                              </div>
+                              <div class="box-body">
+                                <canvas id="comprasventas" width="400" height="600"></canvas>
+                              </div>
+                          </div>
+                        </div>
+
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                           <div class="box box-primary">
                               <div class="box-header with-border">
@@ -193,6 +217,8 @@ if ($_SESSION['escritorio']==1)
                               </div>
                           </div>
                         </div>
+
+
                     </div>
                     <!--Fin centro -->
                   </div><!-- /.box -->
@@ -254,7 +280,45 @@ var compras = new Chart(ctx, {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero:true
+                    beginAtZero:true,
+                    callback: function(value, index, values) {
+                       return value.toLocaleString("es-GT",{style:"currency", currency:"GTQ"});
+                     }
+                }
+            }]
+        }
+    }
+});
+
+var ctx = document.getElementById("comprasventas").getContext('2d');
+var compras = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [<?php echo $fechascompraventa; ?>],
+        datasets: [
+          {
+            label: 'Ventas',
+            data: [<?php echo $totalventas; ?>],
+            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          },
+          {
+            label: 'Compras',
+            data: [<?php echo $totalcompras; ?>],
+            borderColor: 'rgba(255,99,132,1)',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          }
+        ]
+    },
+    options: {
+      maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                    callback: function(value, index, values) {
+                       return value.toLocaleString("es-GT",{style:"currency", currency:"GTQ"});
+                     }
                 }
             }]
         }
@@ -300,7 +364,10 @@ var ventas = new Chart(ctx, {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero:true
+                    beginAtZero:true,
+                    callback: function(value, index, values) {
+                       return value.toLocaleString("es-GT",{style:"currency", currency:"GTQ"});
+                     }
                 }
             }]
         }

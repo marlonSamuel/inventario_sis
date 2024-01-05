@@ -66,6 +66,13 @@ Class Consultas
 		return ejecutarConsulta($sql);
 	}
 
+	public function getSumVentasCompras($anio)
+	{
+		$sql = "select * from COMPRASVSVENTAS where anio = '$anio' order by anio, mes desc";
+
+		 return ejecutarConsulta($sql);
+	}
+
 }
 
 ?>

@@ -113,7 +113,7 @@ switch ($_GET["op"]){
  				"4"=>$reg->tipo_venta == 'CA' ? 'Al contado':'Al crédito',
  				"5"=>$reg->tipo_comprobante,
  				"6"=>$reg->serie_comprobante.'-'.$reg->num_comprobante,
- 				"7"=>$reg->total_venta,
+ 				"7"=>'Q '.number_format($reg->total_venta,2),
  				"8"=>($reg->estado=='Aceptado')?'<span class="label bg-green">Aceptado</span>':
  				'<span class="label bg-red">Anulado</span>'
  				);
