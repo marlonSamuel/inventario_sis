@@ -68,7 +68,6 @@ if ($_SESSION['escritorio']==1)
   $totalcompras='';
   $totalventas = '';
   while ($regcv= $compraventa->fetch_object()) {
-    var_dump($regcv);
      $fechascompraventa=$fechascompraventa.'"'.$regcv->mes .'-'.$regcv->anio. '",';
      $totalcompras=$totalcompras.$regcv->total_compra .','; 
      $totalventas=$totalventas.$regcv->total_venta .','; 
