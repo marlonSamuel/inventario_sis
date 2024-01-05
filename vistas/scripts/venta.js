@@ -280,7 +280,10 @@ function getLastId()
 	$.post("../ajax/venta.php?op=getLastId", function(data, status)
 	{
 		data = JSON.parse(data);
-		var num_c = parseInt(data.idventa)+1;
+		var num_c = 1;
+		if(data !== null){
+			num_c = parseInt(data.idventa)+1;	
+		}
 		$("#serie_comprobante").val('A');
 		$("#num_comprobante").val(num_c);
  	});
