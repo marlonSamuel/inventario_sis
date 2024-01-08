@@ -119,7 +119,7 @@ Class Dte
             /* =============== INICIO DatosGenerales ======== */
             $xml->startElementNs($prefix, 'DatosGenerales', null);
             $xml->startAttribute("Tipo");
-            $xml->text("FPEQ");
+            $xml->text("FACT");
             $xml->startAttribute("FechaHoraEmision");
             $fechaTransaccion = date("Y-m-d", strtotime($venta['fecha_hora']));
             $horaTransaccion = date("H:i:s", strtotime($venta['fecha_hora']));
@@ -136,19 +136,19 @@ Class Dte
             $xml->startAttribute("NITEmisor");
             $xml->text("44235216");
             $xml->startAttribute("NombreEmisor");
-            $xml->text("NELSON MAEL, GONZÁLEZ SOLARES");
+            $xml->text("NEW HORIZON");
             $xml->startAttribute("CodigoEstablecimiento");
             $xml->text("1");
             $xml->startAttribute("NombreComercial");
             $xml->text("NEW HORIZON");
             $xml->startAttribute("AfiliacionIVA");
-            $xml->text("PEQ");
+            $xml->text("GEN");
             $xml->endAttribute();
 
             /* =============== INICIO DireccionEmisor ======== */
             $xml->startElementNs($prefix, 'DireccionEmisor', null);
-            $xml->writeElementNs($prefix, 'Direccion', null, "AVENIDA PRINCIPAL BARRIO EL CAMPAMENTO ZONA 0");
-            $xml->writeElementNs($prefix, 'CodigoPostal', null, "01001");
+            $xml->writeElementNs($prefix, 'Direccion', null, "LOTIFICACIÓN PRADOS DEL CAMPAMENTO CHIQUIMULILLA, SANTA ROSA");
+            $xml->writeElementNs($prefix, 'CodigoPostal', null, "06008");
             $xml->writeElementNs($prefix, 'Municipio', null, "Chiquimulilla");
             $xml->writeElementNs($prefix, 'Departamento', null, "Santa Rosa");
             $xml->writeElementNs($prefix, 'Pais', null, "GT");
@@ -187,7 +187,7 @@ Class Dte
             /* =============== INICIO Frase ======== */
             $xml->startElementNs($prefix, 'Frase', null);
             $xml->startAttribute("TipoFrase");
-            $xml->text("3");
+            $xml->text("1");
             $xml->startAttribute("CodigoEscenario");
             $xml->text("1");
             $xml->endAttribute();
@@ -234,12 +234,12 @@ Class Dte
                 $xml->writeElementNs($prefix, 'Descuento', null, $item->descuento);
 
                 /* =============== INICIO Impuestos ======== */
-                //$xml->startElementNs($prefix, 'Impuestos', null);
+                $xml->startElementNs($prefix, 'Impuestos', null);
 
                 /* =============== INICIO Impuesto ======== */
-                //$xml->startElementNs($prefix, 'Impuesto', null);
-                //$xml->writeElementNs($prefix, 'NombreCorto', null, "IVA");
-                //$xml->writeElementNs($prefix, 'CodigoUnidadGravable', null, "1");
+                $xml->startElementNs($prefix, 'Impuesto', null);
+                $xml->writeElementNs($prefix, 'NombreCorto', null, "IVA");
+                $xml->writeElementNs($prefix, 'CodigoUnidadGravable', null, "1");
 
                 $total = round(($item->subtotal - $item->descuento), 4);
                 $granTotal += $total;
@@ -247,12 +247,12 @@ Class Dte
                 $iva = (($erc * 5) / 100);
                 $totalMontoImpuesto += $iva;
 
-                //$xml->writeElementNs($prefix, 'MontoGravable', null, $erc);
-                //$xml->writeElementNs($prefix, 'MontoImpuesto', null, $iva);
-                //$xml->endElement();
+                $xml->writeElementNs($prefix, 'MontoGravable', null, $erc);
+                $xml->writeElementNs($prefix, 'MontoImpuesto', null, $iva);
+                $xml->endElement();
                 /* =============== FIN Impuesto ======== */
 
-                //$xml->endElement();
+                $xml->endElement();
                 /* =============== FIN Impuestos ======== */
 
                 $xml->writeElementNs($prefix, 'Total', null, $total);
@@ -268,18 +268,18 @@ Class Dte
             $xml->startElementNs($prefix, 'Totales', null);
 
             /* =============== INICIO TotalImpuestos ======== */
-            //$xml->startElementNs($prefix, 'TotalImpuestos', null);
+            $xml->startElementNs($prefix, 'TotalImpuestos', null);
 
             /* =============== INICIO TotalImpuesto ======== */
-            //$xml->startElementNs($prefix, 'TotalImpuesto', null);
-            //$xml->startAttribute("NombreCorto");
-            //$xml->text("IVA");
-            //$xml->startAttribute("TotalMontoImpuesto");
-            //$xml->text($totalMontoImpuesto);
-            //$xml->endElement();
+            $xml->startElementNs($prefix, 'TotalImpuesto', null);
+            $xml->startAttribute("NombreCorto");
+            $xml->text("IVA");
+            $xml->startAttribute("TotalMontoImpuesto");
+            $xml->text($totalMontoImpuesto);
+            $xml->endElement();
             /* =============== FIN TotalImpuesto ======== */
 
-            //$xml->endElement();
+            $xml->endElement();
             /* =============== FIN TotalImpuestos ======== */
 
             $xml->writeElementNs($prefix, 'GranTotal', null, $granTotal);
