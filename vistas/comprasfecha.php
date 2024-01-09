@@ -32,11 +32,11 @@ if ($_SESSION['consultac']==1)
                     <div class="panel-body table-responsive" id="listadoregistros">
                         <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                           <label>Fecha Inicio</label>
-                          <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" value="<?php echo date("Y-m-d"); ?>">
+                          <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio">
                         </div>
                         <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                           <label>Fecha Fin</label>
-                          <input type="date" class="form-control" name="fecha_fin" id="fecha_fin" value="<?php echo date("Y-m-d"); ?>">
+                          <input type="date" class="form-control" name="fecha_fin" id="fecha_fin">
                         </div>
                         <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
                           <thead>

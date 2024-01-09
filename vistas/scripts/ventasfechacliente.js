@@ -2,6 +2,13 @@ var tabla;
 
 //Función que se ejecuta al inicio
 function init(){
+	var now = new Date();
+	var day = ("0" + now.getDate()).slice(-2);
+	var month = ("0" + (now.getMonth() + 1)).slice(-2);
+	var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+    $('#fecha_inicio').val(today);
+    $('#fecha_fin').val(today);
+
 	listar();
 	//Cargamos los items al select cliente
 	$.post("../ajax/venta.php?op=selectCliente", function(r){

@@ -45,14 +45,14 @@ switch ($_GET["op"]){
 					}
 				}
 				//Hash SHA256 en la contraseña
-				$clavehash=hash("SHA256",$clave);
 
+				$clavehash=hash("SHA256",$clave);
 				if (empty($idusuario)){
 					$rspta=$usuario->insertar($nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$clavehash,$imagen,$_POST['permiso']);
 					echo $rspta ? "Usuario registrado" : "No se pudieron registrar todos los datos del usuario";
 				}
 				else {
-					$rspta=$usuario->editar($idusuario,$nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$clavehash,$imagen,$_POST['permiso']);
+					$rspta=$usuario->editar($idusuario,$nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$imagen,$_POST['permiso']);
 					echo $rspta ? "Usuario actualizado" : "Usuario no se pudo actualizar";
 				}
 			//Fin de las validaciones de acceso
@@ -242,6 +242,17 @@ switch ($_GET["op"]){
 
 	    }
 	    echo json_encode($fetch);
+	break;
+
+	case 'cambiarpass':
+		$idusuario=$_POST['idusuario'];
+	    $clave=$_POST['clave'];	
+
+	    $clavehash=hash("SHA256",$clave);
+	    $rspta=$usuario->cambiarpass($idusuario,$clavehash);
+
+ 		echo $rspta ? "Contraseña actualizada" : "No se puede cambiar contraseña";
+
 	break;
 
 	case 'salir':

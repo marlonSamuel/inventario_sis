@@ -67,7 +67,7 @@ if (strlen(session_id()) < 1)
                 <li class="user-header">
                   <img src="../files/usuarios/<?php echo $_SESSION['imagen']; ?>" class="img-circle" alt="User Image">
                   <p>
-                    www.macking.com
+                    NEW HORIZON
                     <small></small>
                   </p>
                 </li>
@@ -76,7 +76,7 @@ if (strlen(session_id()) < 1)
                 <li class="user-footer">
 
                   <div class="pull-right">
-                    <a href="../ajax/usuario.php?op=salir" class="btn btn-default btn-flat">Ver Perfil</a>
+                    <a href="../vistas/perfil.php" class="btn btn-default btn-flat">Ver Perfil</a>
                     <a href="../ajax/usuario.php?op=salir" class="btn btn-default btn-flat">Cerrar Sesión</a>
                   </div>
                 </li>

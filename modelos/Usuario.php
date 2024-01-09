@@ -32,9 +32,9 @@ Class Usuario
 	}
 
 	//Implementamos un método para editar registros
-	public function editar($idusuario,$nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$clave,$imagen,$permisos)
+	public function editar($idusuario,$nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email,$cargo,$login,$imagen,$permisos)
 	{
-		$sql="UPDATE usuario SET nombre='$nombre',tipo_documento='$tipo_documento',num_documento='$num_documento',direccion='$direccion',telefono='$telefono',email='$email',cargo='$cargo',login='$login',clave='$clave',imagen='$imagen' WHERE idusuario='$idusuario'";
+		$sql="UPDATE usuario SET nombre='$nombre',tipo_documento='$tipo_documento',num_documento='$num_documento',direccion='$direccion',telefono='$telefono',email='$email',cargo='$cargo',login='$login',imagen='$imagen' WHERE idusuario='$idusuario'";
 		ejecutarConsulta($sql);
 
 		//Eliminamos todos los permisos asignados para volverlos a registrar
@@ -82,6 +82,16 @@ Class Usuario
 		$sql="SELECT * FROM usuario";
 		return ejecutarConsulta($sql);		
 	}
+
+
+	//Implementamos un método para cambiar contraseña
+	public function cambiarpass($idusuario,$clave)
+	{
+		$sql="UPDATE usuario SET clave='$clave' WHERE idusuario='$idusuario'";
+		return ejecutarConsulta($sql);
+	}
+
+
 	//Implementar un método para listar los permisos marcados
 	public function listarmarcados($idusuario)
 	{
