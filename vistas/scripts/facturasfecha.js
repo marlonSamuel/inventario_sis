@@ -8,6 +8,7 @@ function init(){
 	var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
     $('#fecha_inicio').val(today);
     $('#fecha_fin').val(today);
+    
 	listar();
 	$("#fecha_inicio").change(listar);
 	$("#fecha_fin").change(listar);
