@@ -291,7 +291,7 @@ var compras = new Chart(ctx, {
 
 var ctx = document.getElementById("comprasventas").getContext('2d');
 var compras = new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
     data: {
         labels: [<?php echo $fechascompraventa; ?>],
         datasets: [
