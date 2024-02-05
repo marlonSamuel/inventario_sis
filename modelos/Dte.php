@@ -230,7 +230,7 @@ Class Dte
                 $descuento = ($item->quantity * $item->get_discount_amount());*/
                 $xml->writeElementNs($prefix, 'Descripcion', null, $item->nombre);
                 $xml->writeElementNs($prefix, 'PrecioUnitario', null, $item->precio_venta);
-                $xml->writeElementNs($prefix, 'Precio', null, $item->subtotal);
+                $xml->writeElementNs($prefix, 'Precio', null, $item->precio_venta * $item->cantidad);
                 $xml->writeElementNs($prefix, 'Descuento', null, $item->descuento);
 
                 /* =============== INICIO Impuestos ======== */
@@ -241,7 +241,7 @@ Class Dte
                 //$xml->writeElementNs($prefix, 'NombreCorto', null, "IVA");
                 //$xml->writeElementNs($prefix, 'CodigoUnidadGravable', null, "1");
 
-                $total = round(($item->subtotal - $item->descuento), 4);
+                $total = round(($item->subtotal), 4);
                 $granTotal += $total;
                 $erc = round(($total / 1.05), 4);
                 $iva = (($erc * 5) / 100);
