@@ -193,7 +193,8 @@ function guardaryeditar(e)
               message: (data.html !== undefined && data.html !== "") ? data.html:data.message,
               callback: function(result) { 
               	if(data.autorizacion !== undefined && data.autorizacion !== ""){
-              		location.href ='inventarios/files/facturas/'+data.autorizacion+'.pdf';
+              		//location.href ='inventarios/files/facturas/'+data.autorizacion+'.pdf';
+              		location.href ='files/facturas/'+data.autorizacion+'.pdf';
               	}
                }
              });	          
