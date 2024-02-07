@@ -194,7 +194,8 @@ function guardaryeditar(e)
               callback: function(result) { 
               	if(data.autorizacion !== undefined && data.autorizacion !== ""){
               		//location.href ='inventarios/files/facturas/'+data.autorizacion+'.pdf';
-              		location.href ='files/facturas/'+data.autorizacion+'.pdf';
+
+              		location.href ='../files/facturas/'+data.autorizacion+'.pdf';
               	}
                }
              });	          
