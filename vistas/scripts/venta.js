@@ -197,7 +197,7 @@ function guardaryeditar(e)
 
               		//location.href ='../files/facturas/'+data.autorizacion+'.pdf';
               		window.open(
-					  'http://164.92.77.67/files/facturas'+data.autorizacion+'.pdf',
+					  'http://164.92.77.67/files/facturas/'+data.autorizacion+'.pdf',
 					  '_blank' // <- This is what makes it open in a new window.
 					);
               	}
