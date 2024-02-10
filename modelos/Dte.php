@@ -374,7 +374,7 @@ Class Dte
             $xml->startAttribute("NumeroDocumentoAAnular");
             $xml->text($dte['autorizacion']);
             $xml->startAttribute("NITEmisor");
-            $xml->text("44653948");
+            $xml->text("44235216");
             $xml->startAttribute("IDReceptor");
             $xml->text($dte['nit_comprador']);
             $xml->startAttribute("FechaEmisionDocumentoAnular");

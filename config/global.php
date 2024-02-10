@@ -23,11 +23,19 @@ define("PRO_NOMBRE","NEW HORIZON");
 
 //variables para facturación electronica
 
-define("AUTH_URL_DTE","https://felgttestaws.digifact.com.gt/gt.com.fel.api.v3/api/login/get_token");
-define("CERT_URL_DTE","https://felgttestaws.digifact.com.gt/gt.com.fel.api.v3/api/FELRequestV2?NIT=000044235216&TIPO=CERTIFICATE_DTE_XML_TOSIGN&FORMAT=XML,PDF,HTML&USERNAME=TESTUSER");
-define("CANCEL_URL_DTE","https://felgttestaws.digifact.com.gt/gt.com.fel.api.v3/api/FELRequestV2?NIT=000044235216&TIPO=ANULAR_FEL_TOSIGN&FORMAT=XML,PDF,HTML&USERNAME=TESTUSER");
 
-define("USERNAME_DTE","GT.000044235216.TESTUSER");
-define("PASS_DTE","f1Ufe?u%");
+define("AUTH_URL_DTE","https://felgtaws.digifact.com.gt/gt.com.fel.api.v3/api/login/get_token");//token productivo
+//define("AUTH_URL_DTE","https://felgttestaws.digifact.com.gt/gt.com.fel.api.v3/api/login/get_token");//token test
+
+define("CERT_URL_DTE","https://felgtaws.digifact.com.gt/gt.com.fel.api.v3/api/FELRequestV2?NIT=000044235216&TIPO=CERTIFICATE_DTE_XML_TOSIGN&FORMAT=XML,PDF,HTML&USERNAME=44235216");//certificacion productivo
+
+//define("CERT_URL_DTE","https://felgttestaws.digifact.com.gt/gt.com.fel.api.v3/api/FELRequestV2?NIT=000044235216&TIPO=CERTIFICATE_DTE_XML_TOSIGN&FORMAT=XML,PDF,HTML&USERNAME=TESTUSER");//certificacion test
+
+define("CANCEL_URL_DTE","https://felgtaws.digifact.com.gt/gt.com.fel.api.v3/api/FELRequestV2?NIT=000044235216&TIPO=ANULAR_FEL_TOSIGN&FORMAT=XML,PDF,HTML&USERNAME=44235216");
+
+//define("CANCEL_URL_DTE","https://felgttestaws.digifact.com.gt/gt.com.fel.api.v3/api/FELRequestV2?NIT=000044235216&TIPO=ANULAR_FEL_TOSIGN&FORMAT=XML,PDF,HTML&USERNAME=TESTUSER");//anular test
+
+define("USERNAME_DTE","GT.000044235216.44235216");
+define("PASS_DTE","Nelson_6340");
 
 ?>
