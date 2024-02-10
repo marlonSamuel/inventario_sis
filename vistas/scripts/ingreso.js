@@ -46,7 +46,7 @@ function limpiar()
 }
 
 //Función mostrar formulario
-function mostrarform(flag)
+function mostrarform(flag,mostrar=false)
 {
 	data_detalle = [];
 	//limpiar();
@@ -57,11 +57,16 @@ function mostrarform(flag)
 		$("#formularioregistros").show();
 		//$("#btnGuardar").prop("disabled",false);
 		$("#btnagregar").hide();
-		listarArticulos();
+		if(!mostrar){
+			listarArticulos();	
+		}
+		
 
 		$("#btnGuardar").hide();
 		$("#btnCancelar").show();
-		detalles=0;
+		if(!mostrar){
+			detalles=0;	
+		}
 		$("#btnAgregarArt").show();
 	}
 	else
@@ -178,7 +183,7 @@ function mostrar(idingreso)
 	$.post("../ajax/ingreso.php?op=mostrar",{idingreso : idingreso}, function(data, status)
 	{
 		data = JSON.parse(data);		
-		mostrarform(true);
+		mostrarform(true,true);
 
 		$("#idproveedor").val(data.idproveedor);
 		$("#idproveedor").selectpicker('refresh');

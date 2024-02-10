@@ -53,7 +53,7 @@ function limpiar()
 }
 
 //Función mostrar formulario
-function mostrarform(flag)
+function mostrarform(flag,mostrar=false)
 {
 	data_detalle = [];
 	//limpiar();
@@ -64,12 +64,16 @@ function mostrarform(flag)
 		$("#formularioregistros").show();
 		//$("#btnGuardar").prop("disabled",false);
 		$("#btnagregar").hide();
-		listarArticulos();
+		if(!mostrar){
+			listarArticulos();	
+		}
 
 		$("#btnGuardar").hide();
 		$("#btnCancelar").show();
 		$("#btnAgregarArt").show();
-		detalles=0;
+		if(!mostrar){
+			detalles=0;	
+		}
 		getLastId();
 	}
 	else
@@ -239,7 +243,7 @@ function mostrar(idventa)
 	$.post("../ajax/venta.php?op=mostrar",{idventa : idventa}, function(data, status)
 	{
 		data = JSON.parse(data);		
-		mostrarform(true);
+		mostrarform(true,false);
 
 		$("#idcliente").val(data.idcliente);
 		$("#idcliente").selectpicker('refresh');
