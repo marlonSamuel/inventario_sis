@@ -243,7 +243,7 @@ function mostrar(idventa)
 	$.post("../ajax/venta.php?op=mostrar",{idventa : idventa}, function(data, status)
 	{
 		data = JSON.parse(data);		
-		mostrarform(true,false);
+		mostrarform(true,true);
 
 		$("#idcliente").val(data.idcliente);
 		$("#idcliente").selectpicker('refresh');
@@ -255,6 +255,8 @@ function mostrar(idventa)
 		$("#impuesto").val(data.impuesto);
 		$("#idventa").val(data.idventa);
 
+		$("#total").html("Q. " + data.total_venta);
+
 		//Ocultar y mostrar los botones
 		$("#btnGuardar").hide();
 		$("#btnCancelar").show();
@@ -262,8 +264,24 @@ function mostrar(idventa)
  	});
 
  	$.post("../ajax/venta.php?op=listarDetalle&id="+idventa,function(r){
-	        $("#detalles").html(r);
+ 			showDetalle(JSON.parse(r));
+	        //$("#detalles").html(r);
 	});	
+}
+
+function showDetalle(data){
+	$("#detalles tbody tr").remove();
+	for (var i = 0; i <data.length; i++) {
+    	var fila='<tr>'+
+    	'<td></td>'+
+    	'<td>'+data[i].nombre+'</td>'+
+    	'<td>'+data[i].cantidad+'</td>'+
+    	'<td>'+data[i].precio_venta+'</td>'+
+    	'<td>'+data[i].descuento+'</td>'+
+    	'<td>'+data[i].precio_venta * data[i].cantidad+'</td>'+
+    	'</tr>';
+    	$('#detalles').append(fila);
+    }
 }
 
 //Función para anular registros
@@ -336,7 +354,7 @@ function agregarDetalle(idarticulo,articulo,precio_venta,stock)
 
     if (idarticulo!="")
     {
-    	var subtotal=cantidad*precio_venta;
+    	var subtotal=cantidad*precio_venta-descuento;
     	var fila='<tr class="filas" id="fila'+cont+'">'+
     	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">X</button></td>'+
     	'<td><input type="hidden" name="stock[]" value="'+stock+'"> <input type="hidden" name="nombre[]" value="'+articulo+'"> <input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td>'+

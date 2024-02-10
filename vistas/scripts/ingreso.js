@@ -195,6 +195,8 @@ function mostrar(idingreso)
 		$("#impuesto").val(data.impuesto);
 		$("#idingreso").val(data.idingreso);
 
+    	$("#total").html("Q. " + data.total_compra);	
+
 		//Ocultar y mostrar los botones
 		$("#btnGuardar").hide();
 		$("#btnCancelar").show();
@@ -202,8 +204,24 @@ function mostrar(idingreso)
  	});
 
  	$.post("../ajax/ingreso.php?op=listarDetalle&id="+idingreso,function(r){
-	        $("#detalles").html(r);
+ 			showDetalle(JSON.parse(r));
+	        //$("#detalles").html(r);
 	});
+}
+
+function showDetalle(data){
+	$("#detalles tbody tr").remove();
+	for (var i = 0; i <data.length; i++) {
+    	var fila='<tr>'+
+    	'<td></td>'+
+    	'<td>'+data[i].nombre+'</td>'+
+    	'<td>'+data[i].cantidad+'</td>'+
+    	'<td>'+data[i].precio_compra+'</td>'+
+    	'<td>'+data[i].precio_venta+'</td>'+
+    	'<td>'+data[i].precio_compra * data[i].cantidad+'</td>'+
+    	'</tr>';
+    	$('#detalles').append(fila);
+    }
 }
 
 //Función para anular registros

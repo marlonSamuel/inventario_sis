@@ -59,6 +59,12 @@ switch ($_GET["op"]){
 		$id=$_GET['id'];
 
 		$rspta = $venta->listarDetalle($id);
+		$data = array();
+		 while($row = $rspta->fetch_assoc()) {
+            $data[] = $row; 
+        }
+        echo json_encode($data);
+        return;
 		$total=0;
 		echo '<thead style="background-color:#A9D0F5">
                                     <th>Opciones</th>
