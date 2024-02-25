@@ -1,6 +1,9 @@
 <?php 
 //Incluímos inicialmente la conexión a la base de datos
 require "../config/Conexion.php";
+if (strlen(session_id()) < 1){
+	session_start();//Validamos si existe o no la sesión
+}
 
 Class Consultas
 {
@@ -12,25 +15,51 @@ Class Consultas
 
 	public function comprasfecha($fecha_inicio,$fecha_fin)
 	{
-		$sql="SELECT DATE(i.fecha_hora) as fecha,u.nombre as usuario, p.nombre as proveedor,i.tipo_comprobante,i.serie_comprobante,i.num_comprobante,i.total_compra,i.impuesto,i.estado FROM ingreso i INNER JOIN persona p ON i.idproveedor=p.idpersona INNER JOIN usuario u ON i.idusuario=u.idusuario WHERE DATE(i.fecha_hora)>='$fecha_inicio' AND DATE(i.fecha_hora)<='$fecha_fin' AND i.estado = 'Aceptado'";
+		$idusuario = $_SESSION["idusuario"];
+
+		if($_SESSION["cargo"] == "admin"){
+			$sql="SELECT DATE(i.fecha_hora) as fecha,u.nombre as usuario, p.nombre as proveedor,i.tipo_comprobante,i.serie_comprobante,i.num_comprobante,i.total_compra,i.impuesto,i.estado FROM ingreso i INNER JOIN persona p ON i.idproveedor=p.idpersona INNER JOIN usuario u ON i.idusuario=u.idusuario WHERE DATE(i.fecha_hora)>='$fecha_inicio' AND DATE(i.fecha_hora)<='$fecha_fin' AND i.estado = 'Aceptado'";
+		}else{
+			$sql="SELECT DATE(i.fecha_hora) as fecha,u.nombre as usuario, p.nombre as proveedor,i.tipo_comprobante,i.serie_comprobante,i.num_comprobante,i.total_compra,i.impuesto,i.estado FROM ingreso i INNER JOIN persona p ON i.idproveedor=p.idpersona INNER JOIN usuario u ON i.idusuario=u.idusuario WHERE DATE(i.fecha_hora)>='$fecha_inicio' AND DATE(i.fecha_hora)<='$fecha_fin' AND i.estado = 'Aceptado' AND i.idusuario = '$idusuario'";
+		}
+		
 		return ejecutarConsulta($sql);		
 	}
 
 	public function ventasfechacliente($fecha_inicio,$fecha_fin,$idcliente)
 	{
-		if($idcliente == 0 || $idcliente == ""){
-			$sql="SELECT DATE(v.fecha_hora) as fecha,u.nombre as usuario, p.nombre as cliente,v.tipo_comprobante,v.serie_comprobante,v.num_comprobante,v.total_venta,v.impuesto,v.estado FROM venta v INNER JOIN persona p ON v.idcliente=p.idpersona INNER JOIN usuario u ON v.idusuario=u.idusuario WHERE DATE(v.fecha_hora)>='$fecha_inicio' AND DATE(v.fecha_hora)<='$fecha_fin' AND v.estado = 'Aceptado'";
+		$idusuario = $_SESSION["idusuario"];
+
+		if($_SESSION["cargo"] == "admin"){
+			if($idcliente == 0 || $idcliente == ""){
+				$sql="SELECT DATE(v.fecha_hora) as fecha,u.nombre as usuario, p.nombre as cliente,v.tipo_comprobante,v.serie_comprobante,v.num_comprobante,v.total_venta,v.impuesto,v.estado FROM venta v INNER JOIN persona p ON v.idcliente=p.idpersona INNER JOIN usuario u ON v.idusuario=u.idusuario WHERE DATE(v.fecha_hora)>='$fecha_inicio' AND DATE(v.fecha_hora)<='$fecha_fin' AND v.estado = 'Aceptado'";
+			}else{
+				$sql="SELECT DATE(v.fecha_hora) as fecha,u.nombre as usuario, p.nombre as cliente,v.tipo_comprobante,v.serie_comprobante,v.num_comprobante,v.total_venta,v.impuesto,v.estado FROM venta v INNER JOIN persona p ON v.idcliente=p.idpersona INNER JOIN usuario u ON v.idusuario=u.idusuario WHERE DATE(v.fecha_hora)>='$fecha_inicio' AND DATE(v.fecha_hora)<='$fecha_fin' AND v.idcliente='$idcliente' AND v.estado = 'Aceptado'";
+			
+			}
 		}else{
-			$sql="SELECT DATE(v.fecha_hora) as fecha,u.nombre as usuario, p.nombre as cliente,v.tipo_comprobante,v.serie_comprobante,v.num_comprobante,v.total_venta,v.impuesto,v.estado FROM venta v INNER JOIN persona p ON v.idcliente=p.idpersona INNER JOIN usuario u ON v.idusuario=u.idusuario WHERE DATE(v.fecha_hora)>='$fecha_inicio' AND DATE(v.fecha_hora)<='$fecha_fin' AND v.idcliente='$idcliente' AND v.estado = 'Aceptado'";
-		
+			if($idcliente == 0 || $idcliente == ""){
+				$sql="SELECT DATE(v.fecha_hora) as fecha,u.nombre as usuario, p.nombre as cliente,v.tipo_comprobante,v.serie_comprobante,v.num_comprobante,v.total_venta,v.impuesto,v.estado FROM venta v INNER JOIN persona p ON v.idcliente=p.idpersona INNER JOIN usuario u ON v.idusuario=u.idusuario WHERE DATE(v.fecha_hora)>='$fecha_inicio' AND DATE(v.fecha_hora)<='$fecha_fin' AND v.estado = 'Aceptado' AND v.idusuario = '$idusuario' ";
+			}else{
+				$sql="SELECT DATE(v.fecha_hora) as fecha,u.nombre as usuario, p.nombre as cliente,v.tipo_comprobante,v.serie_comprobante,v.num_comprobante,v.total_venta,v.impuesto,v.estado FROM venta v INNER JOIN persona p ON v.idcliente=p.idpersona INNER JOIN usuario u ON v.idusuario=u.idusuario WHERE DATE(v.fecha_hora)>='$fecha_inicio' AND DATE(v.fecha_hora)<='$fecha_fin' AND v.idcliente='$idcliente' AND v.estado = 'Aceptado' AND v.idusuario = '$idusuario'";
+			
+			}
 		}
 
-		return ejecutarConsulta($sql);		
-			
+		return ejecutarConsulta($sql);					
 	}
 
 	public function facturasDTE($fecha_inicio,$fecha_fin){
-		$sql="SELECT * from sat_facturas WHERE DATE(fecha_certificacion)>='$fecha_inicio' AND DATE(fecha_certificacion)<='$fecha_fin' order by idfactura desc";
+		$idusuario = $_SESSION["idusuario"];
+
+		if($_SESSION["cargo"] == "admin"){
+			$sql="SELECT s.* from sat_facturas s INNER JOIN venta v ON s.idventa = v.idventa
+		 	WHERE DATE(fecha_certificacion)>='$fecha_inicio' AND DATE(fecha_certificacion)<='$fecha_fin' order by idfactura desc";
+		}else{
+			$sql="SELECT s.* from sat_facturas s INNER JOIN venta v ON s.idventa = v.idventa
+		 	WHERE DATE(fecha_certificacion)>='$fecha_inicio' AND DATE(fecha_certificacion)<='$fecha_fin' AND v.idusuario = '$idusuario' order by idfactura desc";
+		}
+		
 		return ejecutarConsulta($sql);
 	}
 

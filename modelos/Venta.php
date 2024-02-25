@@ -3,6 +3,10 @@
 require "../config/Conexion.php";
 require_once "Dte.php";
 
+if (strlen(session_id()) < 1){
+	session_start();//Validamos si existe o no la sesión
+}
+
 Class Venta
 {
 	//Implementamos nuestro constructor
@@ -128,7 +132,14 @@ Class Venta
 	//Implementar un método para listar los registros
 	public function listar()
 	{
-		$sql="SELECT v.idventa,DATE(v.fecha_hora) as fecha,v.idcliente,p.nombre as cliente,u.idusuario,u.nombre as usuario,v.tipo_venta,v.tipo_comprobante,v.serie_comprobante,v.num_comprobante,v.total_venta,v.impuesto,v.estado, sf.autorizacion FROM venta v INNER JOIN persona p ON v.idcliente=p.idpersona INNER JOIN usuario u ON v.idusuario=u.idusuario LEFT JOIN sat_facturas sf ON v.idventa = sf.idventa ORDER by v.idventa desc";
+		$idusuario = $_SESSION["idusuario"];
+
+		if($_SESSION["cargo"] == "admin"){
+			$sql="SELECT v.idventa,DATE(v.fecha_hora) as fecha,v.idcliente,p.nombre as cliente,u.idusuario,u.nombre as usuario,v.tipo_venta,v.tipo_comprobante,v.serie_comprobante,v.num_comprobante,v.total_venta,v.impuesto,v.estado, sf.autorizacion FROM venta v INNER JOIN persona p ON v.idcliente=p.idpersona INNER JOIN usuario u ON v.idusuario=u.idusuario LEFT JOIN sat_facturas sf ON v.idventa = sf.idventa ORDER by v.idventa desc";
+		}else{
+			$sql="SELECT v.idventa,DATE(v.fecha_hora) as fecha,v.idcliente,p.nombre as cliente,u.idusuario,u.nombre as usuario,v.tipo_venta,v.tipo_comprobante,v.serie_comprobante,v.num_comprobante,v.total_venta,v.impuesto,v.estado, sf.autorizacion FROM venta v INNER JOIN persona p ON v.idcliente=p.idpersona INNER JOIN usuario u ON v.idusuario=u.idusuario LEFT JOIN sat_facturas sf ON v.idventa = sf.idventa WHERE v.idusuario ='$idusuario' ORDER by v.idventa desc";
+		}
+		
 		return ejecutarConsulta($sql);		
 	}
 
