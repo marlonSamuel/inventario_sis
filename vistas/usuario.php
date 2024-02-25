@@ -94,10 +94,10 @@ if ($_SESSION['acceso']==1)
                             <label>Login (*):</label>
                             <input type="text" class="form-control" name="login" id="login" maxlength="20" placeholder="Login" required>
                           </div>
-                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <!--<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Clave (*):</label>
                             <input type="password" class="form-control" name="clave" id="clave" maxlength="64" placeholder="Clave" required>
-                          </div>
+                          </div>-->
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Permisos:</label>
                             <ul style="list-style: none;" id="permisos">
