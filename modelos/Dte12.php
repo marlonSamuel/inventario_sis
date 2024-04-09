@@ -136,7 +136,7 @@ Class Dte
             $xml->startAttribute("NITEmisor");
             $xml->text("44235216");
             $xml->startAttribute("NombreEmisor");
-            $xml->text("NEW HORIZON");
+            $xml->text("NELSON MAEL, GONZÁLEZ SOLARES");
             $xml->startAttribute("CodigoEstablecimiento");
             $xml->text("1");
             $xml->startAttribute("NombreComercial");
@@ -147,7 +147,7 @@ Class Dte
 
             /* =============== INICIO DireccionEmisor ======== */
             $xml->startElementNs($prefix, 'DireccionEmisor', null);
-            $xml->writeElementNs($prefix, 'Direccion', null, "LOTIFICACIÓN PRADOS DEL CAMPAMENTO CHIQUIMULILLA, SANTA ROSA");
+            $xml->writeElementNs($prefix, 'Direccion', null, "AVENIDA PRINCIPAL BARRIO EL CAMPAMENTO zona 0");
             $xml->writeElementNs($prefix, 'CodigoPostal', null, "06008");
             $xml->writeElementNs($prefix, 'Municipio', null, "Chiquimulilla");
             $xml->writeElementNs($prefix, 'Departamento', null, "Santa Rosa");
@@ -230,7 +230,7 @@ Class Dte
                 $descuento = ($item->quantity * $item->get_discount_amount());*/
                 $xml->writeElementNs($prefix, 'Descripcion', null, $item->nombre);
                 $xml->writeElementNs($prefix, 'PrecioUnitario', null, $item->precio_venta);
-                $xml->writeElementNs($prefix, 'Precio', null, $item->subtotal);
+                $xml->writeElementNs($prefix, 'Precio', null, $item->subtotal+$item->descuento);
                 $xml->writeElementNs($prefix, 'Descuento', null, $item->descuento);
 
                 /* =============== INICIO Impuestos ======== */
@@ -241,10 +241,10 @@ Class Dte
                 $xml->writeElementNs($prefix, 'NombreCorto', null, "IVA");
                 $xml->writeElementNs($prefix, 'CodigoUnidadGravable', null, "1");
 
-                $total = round(($item->subtotal - $item->descuento), 4);
+                $total = round(($item->subtotal), 4);
                 $granTotal += $total;
-                $erc = round(($total / 1.05), 4);
-                $iva = (($erc * 5) / 100);
+                $erc = round(($total / 1.12), 4);
+                $iva = (($erc * 12) / 100);
                 $totalMontoImpuesto += $iva;
 
                 $xml->writeElementNs($prefix, 'MontoGravable', null, $erc);
@@ -374,7 +374,7 @@ Class Dte
             $xml->startAttribute("NumeroDocumentoAAnular");
             $xml->text($dte['autorizacion']);
             $xml->startAttribute("NITEmisor");
-            $xml->text("44653948");
+            $xml->text("44235216");
             $xml->startAttribute("IDReceptor");
             $xml->text($dte['nit_comprador']);
             $xml->startAttribute("FechaEmisionDocumentoAnular");

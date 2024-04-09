@@ -1,7 +1,7 @@
 <?php 
 //Incluímos inicialmente la conexión a la base de datos
 require "../config/Conexion.php";
-require_once "Dte.php";
+require_once "Dte12.php";
 
 if (strlen(session_id()) < 1){
 	session_start();//Validamos si existe o no la sesión
