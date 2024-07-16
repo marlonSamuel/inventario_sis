@@ -137,6 +137,33 @@ switch ($_GET["op"]){
  		echo json_encode($results);
 
 	break;
+
+	case 'comprasproductos':
+		$fecha_inicio=$_REQUEST["fecha_inicio"];
+		$fecha_fin=$_REQUEST["fecha_fin"];;
+
+		$rspta=$consulta->reporteCompraArticulos($fecha_inicio, $fecha_fin);
+ 		//Vamos a declarar un array
+ 		$data= Array();
+ 		while ($reg=$rspta->fetch_object()){
+
+ 			$data[]=array(
+ 				"0"=>$reg->fecha,
+ 				"1"=>$reg->codigo,
+ 				"2"=>$reg->producto,
+ 				"3"=>$reg->cantidad,
+ 				"4"=>'Q '.number_format($reg->costo_por_articulo,2),
+ 				"5"=>'Q '.number_format($reg->costo_total,2)
+ 				);
+ 		}
+ 		$results = array(
+ 			"sEcho"=>1, //Información para el datatables
+ 			"iTotalRecords"=>count($data), //enviamos el total registros al datatable
+ 			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+ 			"aaData"=>$data);
+ 		echo json_encode($results);
+
+	break;
 }
 //Fin de las validaciones de acceso
 }

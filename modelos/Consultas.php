@@ -102,6 +102,17 @@ Class Consultas
 		 return ejecutarConsulta($sql);
 	}
 
+	public function reporteCompraArticulos($fecha_inicio,$fecha_fin){
+		 $sql="select i.fecha_hora fecha, a.codigo, 
+				a.nombre producto, ROUND((d.precio_compra / d.cantidad),2) costo_por_articulo, d.cantidad, d.precio_compra costo_total from ingreso i
+				inner join detalle_ingreso d on i.idingreso = d.idingreso
+				inner join articulo a on d.idarticulo = a.idarticulo
+				where i.estado = 'Aceptado' and i.fecha_hora between '$fecha_inicio' and '$fecha_fin'
+				order by d.iddetalle_ingreso desc";
+		
+		return ejecutarConsulta($sql);
+	}
+
 }
 
 ?>
